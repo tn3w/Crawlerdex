@@ -52,13 +52,13 @@ Array of crawler entries:
 
 Static site deployed to [crawlerdex.tn3w.dev](https://crawlerdex.tn3w.dev) via GitHub Pages.
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Bestiary UI: search, UA paste-match, tag chips, modal w/ block-rate chart |
-| `404.html` | Themed not-found page |
-| `_crawler-template.html` | Placeholder template (`{{NAME}}`, `{{PATTERN}}`, …) for per-crawler page |
-| `CNAME` | Custom domain |
-| `robots.txt`, `sitemap.xml`, `<Crawler>.html` | Generated in CI by `tools/build_pages.py` (gitignored) |
+| File                                          | Purpose                                                                   |
+| --------------------------------------------- | ------------------------------------------------------------------------- |
+| `index.html`                                  | Bestiary UI: search, UA paste-match, tag chips, modal w/ block-rate chart |
+| `404.html`                                    | Themed not-found page                                                     |
+| `_crawler-template.html`                      | Placeholder template (`{{NAME}}`, `{{PATTERN}}`, …) for per-crawler page  |
+| `CNAME`                                       | Custom domain                                                             |
+| `robots.txt`, `sitemap.xml`, `<Crawler>.html` | Generated in CI by `tools/build_pages.py` (gitignored)                    |
 
 - Hero search → live filter across pattern/description/instances
 - Paste full `User-Agent` (>40 chars or contains `Mozilla`/`compatible;`) → longest-pattern regex wins

@@ -187,9 +187,9 @@ def write_robots(entries: list[tuple[str, str]]) -> None:
         "Allow: /",
         "",
     ]
-    for name, _ in entries:
-        lines.append(f"User-agent: {name}")
-        lines.append("Allow: /")
+    for _, slug in entries:
+        lines.append("User-agent: *")
+        lines.append(f"Allow: /{slug}")
         lines.append("")
     lines.append(f"Sitemap: {SITE}/sitemap.xml")
     lines.append("")

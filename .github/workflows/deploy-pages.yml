@@ -51,6 +51,16 @@ jobs:
       - name: Build per-crawler SEO pages, robots.txt, sitemap.xml
         run: python3 tools/build_pages.py
 
+      - name: Minify HTML
+        run: |
+          find docs -name '_*.html' -delete
+          find docs -name '*.html' | while read -r f; do
+            npx -y html-minifier-terser \
+              --collapse-whitespace --remove-comments \
+              --minify-css true --minify-js true \
+              -o "$f" "$f"
+          done
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
