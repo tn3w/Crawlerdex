@@ -16018,5 +16018,60 @@
     "addition_date": "2026/05/02",
     "description": "Defunct commercial crawler for blogs and news",
     "tags": ["feed-reader"]
+  },
+  {
+    "pattern": "Prerender",
+    "url": "https://docs.prerender.io/docs/33-overview-of-prerender-crawlers",
+    "instances": [
+      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/91.0.4472.114 Safari/537.36 Prerender (+https://github.com/prerender/prerender)",
+      "Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Mobile Safari/537.36 Prerender (+https://github.com/prerender/prerender)",
+      "Prerender (+https://github.com/prerender/prerender)"
+    ],
+    "addition_date": "2026/05/02",
+    "description": "JavaScript rendering service for search engine crawlers",
+    "tags": ["seo"]
+  },
+  {
+    "pattern": "StackRambler",
+    "url": "https://useragentstring.com/pages/useragentstring.php?name=StackRambler",
+    "instances": [
+      "StackRambler/2.0 (MSIE incompatible)",
+      "StackRambler/2.0"
+    ],
+    "addition_date": "2026/05/02",
+    "description": "Defunct Rambler.ru search engine crawler from Stack Ltd",
+    "tags": ["search-engine"]
+  },
+  {
+    "pattern": "SputnikBot",
+    "url": "http://corp.sputnik.ru/webmaster",
+    "instances": [
+      "Mozilla/5.0 (compatible; SputnikBot/2.3; +http://corp.sputnik.ru/webmaster)",
+      "Mozilla/5.0 (compatible; SputnikImageBot/2.2)"
+    ],
+    "addition_date": "2026/05/02",
+    "description": "Defunct Russian state search engine crawler shut down 2020",
+    "tags": ["search-engine"]
+  },
+  {
+    "pattern": "EasouSpider",
+    "url": "http://www.easou.com/search/spider.html",
+    "instances": [
+      "Mozilla/5.0 (compatible; EasouSpider; +http://www.easou.com/search/spider.html)"
+    ],
+    "addition_date": "2026/05/02",
+    "description": "Chinese mobile search engine crawler largely dormant",
+    "tags": ["search-engine"]
+  },
+  {
+    "pattern": "EtaoSpider",
+    "url": "http://open.etao.com/dev/EtaoSpider",
+    "instances": [
+      "EtaoSpider",
+      "Mozilla/5.0 (compatible; EtaoSpider/1.0; http://open.etao.com/dev/EtaoSpider)"
+    ],
+    "addition_date": "2026/05/02",
+    "description": "Alibaba Etao shopping search engine crawler",
+    "tags": ["search-engine"]
   }
 ]
