@@ -17423,7 +17423,7 @@
     "tags": ["http-library"]
   },
   {
-    "pattern": "thumbshots",
+    "pattern": "thumbshots-de",
     "url": "https://udger.com/resources/ua-list/bot-detail?bot=thumbshots-de-Bot",
     "instances": [
       "thumbshots-de-Bot",
