@@ -16256,7 +16256,7 @@
     ],
     "addition_date": "2026/05/03",
     "description": "AI Agent development and execution platform",
-    "tags": ["ai-agent"]
+    "tags": ["ai-crawler"]
   },
   {
     "pattern": "^Links ",
@@ -16290,7 +16290,7 @@
     "instances": ["GoogleAgent-URLContext"],
     "addition_date": "2026/05/03",
     "description": "Google Gemini agent for providing URL context in agentic AI workflows",
-    "tags": ["ai-agent"]
+    "tags": ["ai-crawler"]
   },
   {
     "pattern": "1001FirmsBot",
@@ -17300,16 +17300,6 @@
     ]
   },
   {
-    "pattern": "AdsTxtCrawler",
-    "url": "https://github.com/InteractiveAdvertisingBureau/adstxtcrawler",
-    "instances": [
-      "AdsTxtCrawler/1.0; +https://github.com/InteractiveAdvertisingBureau/adstxtcrawler"
-    ],
-    "addition_date": "2026/05/03",
-    "description": "Crawls ads.txt files for ad verification",
-    "tags": ["advertising"]
-  },
-  {
     "pattern": "IABTechLab.*Ads\\.txt",
     "url": "https://iabtechlab.com/ads-txt/ads-txt-aggregator/",
     "instances": [
@@ -17358,17 +17348,6 @@
     "addition_date": "2026/05/03",
     "description": "PubMatic ads.txt verification crawler",
     "tags": ["advertising"]
-  },
-  {
-    "pattern": "SEOkicks",
-    "url": "https://en.seokicks.de/",
-    "instances": [
-      "Mozilla/5.0 (compatible; SEOkicks-Robot; +https://www.seokicks.de/robot.html)",
-      "Mozilla/5.0 (compatible; SEOkicks; https://www.seokicks.de/robot.html)"
-    ],
-    "addition_date": "2026/05/03",
-    "description": "German SEO backlink analysis crawler",
-    "tags": ["seo"]
   },
   {
     "pattern": "SMTBot",
