@@ -264,6 +264,29 @@ def build_values(crawler: dict, name: str, slug: str, blocks: dict) -> dict[str,
     )
     added_row = f"<dt>Added</dt><dd>{html.escape(added)}</dd>" if added else ""
 
+    rdns = crawler.get("rdns") or []
+    rdns_row = (
+        "<dt>rDNS suffixes</dt><dd>"
+        + ", ".join(f"<code>{html.escape(r)}</code>" for r in rdns)
+        + "</dd>"
+        if rdns
+        else ""
+    )
+    rdns_section = (
+        "<h2>rDNS verification (FCrDNS)</h2>"
+        f'<p style="font-size:16px;line-height:1.6">Verify a request is genuinely '
+        f"<strong>{html.escape(name)}</strong> with forward-confirmed reverse DNS: "
+        f"the client IP's PTR record must end in one of the suffixes below "
+        f"<strong>and</strong> a forward A/AAAA lookup of that hostname must return "
+        f"the same IP. UA strings alone are spoofable; FCrDNS is not.</p>"
+        "<ul style=\"font-family:'JetBrains Mono',monospace;font-size:14px;"
+        'line-height:1.8;padding-left:20px">'
+        + "".join(f"<li><code>{html.escape(r)}</code></li>" for r in rdns)
+        + "</ul>"
+        if rdns
+        else ""
+    )
+
     return {
         "TITLE": html.escape(title),
         "SEO_DESC": html.escape(seo_desc),
@@ -281,6 +304,8 @@ def build_values(crawler: dict, name: str, slug: str, blocks: dict) -> dict[str,
         "INSTANCE_COUNT": str(len(instances)),
         "REF_ROW": ref_row,
         "ADDED_ROW": added_row,
+        "RDNS_ROW": rdns_row,
+        "RDNS_SECTION": rdns_section,
         "CHART_SECTION": chart_section(crawler, name, blocks),
         "HTACCESS_PATTERN": html.escape(htaccess_pattern(pattern)),
         "NGINX_PATTERN": html.escape(nginx_pattern(pattern)),
