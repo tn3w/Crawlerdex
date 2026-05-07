@@ -1,0 +1,46 @@
+name: Release crawlers.json
+
+on:
+  push:
+    branches: [master]
+    paths: [crawlers.json]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build minified variant
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          src = json.loads(Path("crawlers.json").read_text())
+          minimal = [
+              {k: v for k, v in e.items() if k not in ("instances", "addition_date")}
+              for e in src
+          ]
+          Path("crawlers.min.json").write_text(
+              json.dumps(minimal, separators=(",", ":"), ensure_ascii=False)
+          )
+          PY
+
+      - name: Compute tag
+        id: tag
+        run: echo "tag=crawlers-$(date -u +%Y%m%d)-${GITHUB_SHA:0:7}" >> "$GITHUB_OUTPUT"
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.tag.outputs.tag }}" \
+            crawlers.json crawlers.min.json \
+            --title "${{ steps.tag.outputs.tag }}" \
+            --notes "Auto-built from ${GITHUB_SHA:0:7}. Download:
+          - \`crawlers.json\`: full database
+          - \`crawlers.min.json\`: minified, no instances or addition_date"

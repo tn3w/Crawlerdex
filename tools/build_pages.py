@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Generate per-crawler SEO pages, robots.txt, sitemap.xml from crawlers.json."""
+
 from __future__ import annotations
 
+from datetime import datetime, timezone
 import html
 import json
+from pathlib import Path
 import re
 import sys
-from datetime import datetime, timezone
-from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -41,7 +42,6 @@ def name_of(pattern: str) -> str:
     s = re.sub(r"[*+?]\??", "", s)
     s = re.sub(r"\{\d+(,\d*)?\}", "", s)
     s = re.sub(r"\\[bBwWsSdD]", "", s)
-    s = re.sub(r"\.", " ", s)
     s = re.sub(r"\s+", " ", s).strip()
     s = re.sub(r"[/\-_]+$", "", s).strip()
     return s or pattern
@@ -111,10 +111,7 @@ def chart_svg(series: dict[str, float]) -> str:
         f"{'L' if i else 'M'}{x_at(p[0]):.1f},{y_at(p[1]):.1f}"
         for i, p in enumerate(points)
     )
-    area = (
-        f"{path} L{x_at(xmax):.1f},{height - pad} "
-        f"L{x_at(xmin):.1f},{height - pad} Z"
-    )
+    area = f"{path} L{x_at(xmax):.1f},{height - pad} L{x_at(xmin):.1f},{height - pad} Z"
     grid_lines = "".join(
         f'<line class="grid-l" x1="{pad}" x2="{width - pad}" '
         f'y1="{pad + (height - pad * 2) * f}" '
@@ -179,9 +176,7 @@ def fill(template: str, values: dict[str, str]) -> str:
     return out
 
 
-def build_values(
-    crawler: dict, name: str, slug: str, blocks: dict
-) -> dict[str, str]:
+def build_values(crawler: dict, name: str, slug: str, blocks: dict) -> dict[str, str]:
     pattern = crawler.get("pattern", "")
     description = crawler.get("description") or f"{name} web crawler user-agent details."
     tags = crawler.get("tags") or ["uncategorized"]
@@ -258,8 +253,7 @@ def build_values(
     )
 
     tags_html = "".join(
-        f'<a class="tag-mini" href="/?tag={quote(t)}">{html.escape(t)}</a>'
-        for t in tags
+        f'<a class="tag-mini" href="/?tag={quote(t)}">{html.escape(t)}</a>' for t in tags
     )
 
     ref_row = (

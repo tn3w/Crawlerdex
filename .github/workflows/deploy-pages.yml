@@ -6,13 +6,11 @@ on:
     paths:
       - docs/**
       - .github/workflows/deploy-pages.yml
-  release:
-    types: [published]
   workflow_run:
     workflows: [Update Feeds]
     types: [completed]
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 5 * * *'
   workflow_dispatch:
 
 permissions:
