@@ -133,8 +133,6 @@ def validate_instances(i: int, instances) -> None:
     strs = [s for s in instances if isinstance(s, str)]
     if len(strs) != len(set(strs)):
         err(f"[{i}] duplicate instance strings")
-    if not instances:
-        warn(f"[{i}] no instances — pattern unverifiable")
 
 
 def validate_url(i: int, url) -> None:
@@ -168,6 +166,11 @@ def validate_rdns(i: int, rdns) -> None:
         warn(f"[{i}] rdns not sorted")
     if len(rdns) != len(set(rdns)):
         err(f"[{i}] duplicate rdns suffixes")
+    strs = [s for s in rdns if isinstance(s, str)]
+    for suf in strs:
+        for other in strs:
+            if suf != other and suf.endswith(other):
+                err(f"[{i}] rdns {suf!r} is redundant, already covered by {other!r}")
 
 
 def validate_entry(i: int, e: dict) -> None:

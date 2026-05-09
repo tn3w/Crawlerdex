@@ -42,7 +42,7 @@ jobs:
           mkdir -p docs/data
           cp crawlers.json docs/data/crawlers.json
           curl -fsSL \
-            https://github.com/tn3w/robots-radar/releases/latest/download/crawler-block-percentages.json \
+            https://github.com/tn3w/Crawlerdex/releases/latest/download/crawler-block-percentages.json \
             -o docs/data/crawler-block-percentages.json
 
       - name: Build per-crawler SEO pages, robots.txt, sitemap.xml

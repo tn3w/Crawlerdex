@@ -17,9 +17,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -38,9 +36,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -55,9 +51,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -72,9 +66,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -89,9 +81,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -107,9 +97,7 @@
       "advertising"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -128,9 +116,7 @@
       "advertising"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -147,9 +133,7 @@
       "feed-reader"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -168,10 +152,7 @@
       "advertising"
     ],
     "rdns": [
-      ".alexa.com",
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -198,9 +179,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -217,9 +196,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -236,9 +213,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -254,9 +229,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -301,11 +274,9 @@
       "search-engine"
     ],
     "rdns": [
-      ".crawl.yahoo.net",
       ".yahoo.co.jp",
       ".yahoo.com",
-      ".yahoo.net",
-      ".yse.yahoo.net"
+      ".yahoo.net"
     ]
   },
   {
@@ -592,7 +563,6 @@
   {
     "pattern": "exabot",
     "instances": [
-      "Mozilla/5.0 (compatible; Alexabot/1.0; +http://www.alexa.com/help/certifyscan; certifyscan@alexa.com)",
       "Mozilla/5.0 (compatible; Exabot PyExalead/3.0; +http://www.exabot.com/go/robot)",
       "Mozilla/5.0 (compatible; Exabot-Images/3.0; +http://www.exabot.com/go/robot)",
       "Mozilla/5.0 (compatible; Exabot/3.0 (BiggerBetter); +http://www.exabot.com/go/robot)",
@@ -602,11 +572,6 @@
     "description": "Exabot search engine web crawler for indexing",
     "tags": [
       "search-engine"
-    ],
-    "rdns": [
-      ".alexa.com",
-      ".exa.ai",
-      ".exa.com"
     ]
   },
   {
@@ -951,9 +916,6 @@
       "search-engine"
     ],
     "rdns": [
-      ".twitter.com",
-      ".twttr.com",
-      ".x.com",
       ".yandex.com",
       ".yandex.net",
       ".yandex.ru"
@@ -1537,9 +1499,7 @@
     ],
     "rdns": [
       ".baidu.com",
-      ".baidu.jp",
-      ".crawl.baidu.com",
-      ".crawl.baidu.jp"
+      ".baidu.jp"
     ]
   },
   {
@@ -1744,7 +1704,6 @@
       "search-engine"
     ],
     "rdns": [
-      ".go.mail.ru",
       ".mail.ru"
     ]
   },
@@ -2744,10 +2703,6 @@
     "description": "CXense web crawler for content analysis",
     "tags": [
       "advertising"
-    ],
-    "rdns": [
-      ".seranking.com",
-      ".sr-srv.net"
     ]
   },
   {
@@ -2816,9 +2771,6 @@
     "description": "Facebook's web crawler for social sharing",
     "tags": [
       "social-preview"
-    ],
-    "rdns": [
-      ".huggingface.co"
     ]
   },
   {
@@ -3051,8 +3003,7 @@
       "seo"
     ],
     "rdns": [
-      ".semrush.com",
-      ".sensor.semrush.com"
+      ".semrush.com"
     ]
   },
   {
@@ -3099,11 +3050,9 @@
       "search-engine"
     ],
     "rdns": [
-      ".crawl.yahoo.net",
       ".yahoo.co.jp",
       ".yahoo.com",
-      ".yahoo.net",
-      ".yse.yahoo.net"
+      ".yahoo.net"
     ]
   },
   {
@@ -3128,10 +3077,6 @@
     "description": "AddThis social sharing web crawler bot",
     "tags": [
       "social-preview"
-    ],
-    "rdns": [
-      ".datadog.com",
-      ".datadoghq.com"
     ]
   },
   {
@@ -3700,11 +3645,9 @@
       "social-preview"
     ],
     "rdns": [
-      ".crawl.yahoo.net",
       ".yahoo.co.jp",
       ".yahoo.com",
-      ".yahoo.net",
-      ".yse.yahoo.net"
+      ".yahoo.net"
     ]
   },
   {
@@ -6130,9 +6073,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -6399,7 +6340,6 @@
     ],
     "rdns": [
       ".bytedance.com",
-      ".bytespider.bytedance.com",
       ".tiktokv.com"
     ]
   },
@@ -6427,9 +6367,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -7063,9 +7001,6 @@
     "description": "BlogTraffic feed fetcher web crawler",
     "tags": [
       "feed-reader"
-    ],
-    "rdns": [
-      ".cloudflare.com"
     ]
   },
   {
@@ -7452,9 +7387,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -7495,7 +7428,6 @@
       "ai-crawler"
     ],
     "rdns": [
-      ".chat.openai.com",
       ".openai.com"
     ]
   },
@@ -7511,7 +7443,6 @@
       "ai-fetcher"
     ],
     "rdns": [
-      ".chat.openai.com",
       ".openai.com"
     ]
   },
@@ -7528,7 +7459,6 @@
       "search-engine"
     ],
     "rdns": [
-      ".chat.openai.com",
       ".openai.com"
     ]
   },
@@ -7606,9 +7536,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -8557,7 +8485,6 @@
     ],
     "rdns": [
       ".bytedance.com",
-      ".bytespider.bytedance.com",
       ".tiktokv.com"
     ]
   },
@@ -8792,9 +8719,7 @@
       "ai-crawler"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -9151,9 +9076,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -9966,8 +9889,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".brave.com",
-      ".search.brave.com"
+      ".brave.com"
     ]
   },
   {
@@ -10227,9 +10149,7 @@
       "seo"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -11477,9 +11397,7 @@
       "social-preview"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -11496,9 +11414,7 @@
       "search-engine"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -11554,9 +11470,7 @@
       "ai-crawler"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -15860,11 +15774,9 @@
       "social-preview"
     ],
     "rdns": [
-      ".crawl.yahoo.net",
       ".yahoo.co.jp",
       ".yahoo.com",
-      ".yahoo.net",
-      ".yse.yahoo.net"
+      ".yahoo.net"
     ]
   },
   {
@@ -15879,11 +15791,9 @@
       "seo"
     ],
     "rdns": [
-      ".crawl.yahoo.net",
       ".yahoo.co.jp",
       ".yahoo.com",
-      ".yahoo.net",
-      ".yse.yahoo.net"
+      ".yahoo.net"
     ]
   },
   {
@@ -15932,10 +15842,6 @@
     "addition_date": "2026/04/17",
     "tags": [
       "seo"
-    ],
-    "rdns": [
-      ".zap.org",
-      ".zaproxy.org"
     ]
   },
   {
@@ -16998,9 +16904,7 @@
       "browser-automation"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -17017,9 +16921,7 @@
       "browser-automation"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -17036,9 +16938,7 @@
       "ai-fetcher"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -17055,9 +16955,7 @@
       "browser-automation"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
@@ -17295,7 +17193,6 @@
       "feed-reader"
     ],
     "rdns": [
-      ".go.mail.ru",
       ".mail.ru"
     ]
   },
@@ -17995,7 +17892,6 @@
     ],
     "rdns": [
       ".bytedance.com",
-      ".bytespider.bytedance.com",
       ".tiktokv.com"
     ]
   },
@@ -19891,9 +19787,7 @@
       "browser-automation"
     ],
     "rdns": [
-      ".geo.googlebot.com",
-      ".goog.com",
-      ".google.com",
+      ".1e100.net",
       ".googlebot.com",
       ".googleusercontent.com"
     ]
