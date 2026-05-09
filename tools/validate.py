@@ -9,6 +9,7 @@ from pathlib import Path
 import re
 import sys
 import time
+import warnings
 
 ROOT = Path(__file__).resolve().parent.parent
 PATH = ROOT / "crawlers.json"
@@ -44,6 +45,11 @@ REDOS_HEURISTICS = [
     re.compile(r"(\[[^\]]+\]|\.|\\w|\\d|\\s)[+*]\1[+*]"),
     re.compile(r"\(\?:[^)]*\|[^)]*\)[+*]\{"),
 ]
+PERF_HEURISTICS = [
+    (re.compile(r"\.\*[A-Za-z_]{3,}"), "use [^/]* or specific prefix instead of .*"),
+    (re.compile(r"\.\+[A-Za-z_]{3,}"), "use [^/]+ or specific prefix instead of .+"),
+    (re.compile(r"(?<![\\])\.\*\.\*"), "consecutive .* is redundant"),
+]
 TOO_PERMISSIVE = {".*", ".+", ".", r"\w+", r"\w*", r"\S+", r"\S*", r"\b\w+\b"}
 MIN_LITERAL_CHARS = 3
 MAX_PATTERN_LEN = 120
@@ -72,7 +78,7 @@ FRAMEWORK_PARENTS = {
 }
 
 errors: list[str] = []
-warnings: list[str] = []
+warns: list[str] = []
 
 
 def err(msg: str) -> None:
@@ -80,7 +86,7 @@ def err(msg: str) -> None:
 
 
 def warn(msg: str) -> None:
-    warnings.append(msg)
+    warns.append(msg)
 
 
 def literal_chars(pattern: str) -> int:
@@ -236,6 +242,10 @@ def check_pattern(i: int, p: str, compiled: re.Pattern) -> None:
         err(f"[{i}] pattern has {lits} literal chars (<{MIN_LITERAL_CHARS}): {p!r}")
     if any(rx.search(p) for rx in REDOS_HEURISTICS):
         err(f"[{i}] pattern looks ReDoS-prone: {p!r}")
+    for rx, hint in PERF_HEURISTICS:
+        if rx.search(p):
+            err(f"[{i}] pattern inefficient ({hint}): {p!r}")
+            break
     started = time.perf_counter()
     try:
         compiled.search(REDOS_PROBE)
@@ -265,10 +275,19 @@ def validate_patterns(entries: list) -> list:
             continue
         seen[p] = i
         try:
-            compiled = re.compile(p)
+            with warnings.catch_warnings():
+                warnings.simplefilter("error", SyntaxWarning)
+                compiled = re.compile(p)
+        except SyntaxWarning as ex:
+            err(f"[{i}] pattern has invalid escape sequence: {p!r} ({ex})")
+            continue
         except re.error as ex:
             err(f"[{i}] pattern does not compile: {p!r} ({ex})")
             continue
+        try:
+            re.compile("(?:" + p + ")")
+        except re.error as ex:
+            err(f"[{i}] pattern not pipe-compatible: {p!r} ({ex})")
         out.append((i, e, compiled))
         check_pattern(i, p, compiled)
     return out
@@ -374,11 +393,11 @@ def main() -> int:
     validate_browser_safety(compiled)
     print_stats(entries)
 
-    for w in warnings:
+    for w in warns:
         print(f"  warn  {w}")
     for e in errors:
         print(f"  ERR   {e}")
-    print(f"\nerrors:   {len(errors)}\nwarnings: {len(warnings)}")
+    print(f"\nerrors:   {len(errors)}\nwarnings: {len(warns)}")
     return 1 if errors else 0
 
 

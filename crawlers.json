@@ -21294,7 +21294,7 @@
     "addition_date": "2026/05/03"
   },
   {
-    "pattern": "IABTechLab.*Ads\\.txt",
+    "pattern": "IABTechLab[^/]*Ads\\.txt",
     "url": "https://iabtechlab.com/ads-txt/ads-txt-aggregator/",
     "instances": [
       "IABTechLab Ads.txt Crawler"
@@ -21336,7 +21336,7 @@
     ]
   },
   {
-    "pattern": "PubMatic.*Crawler",
+    "pattern": "PubMatic[^/]*Crawler",
     "url": "https://pubmatic.com/blog/introducing-crawler-2-0-the-next-generation-ads-txt-crawler-at-pubmatic/",
     "instances": [
       "PubMatic Crawler Bot"
@@ -22188,7 +22188,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "CDR.*Simulator",
+    "pattern": "CDR[\\S ]* Simulator",
     "url": "http://timewe.net",
     "instances": [
       "CDR/1.7.1 Simulator/0.7(+http://timewe.net) Profile/MIDP-1.0 Configuration/CLDC-1.0"
@@ -22768,7 +22768,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "DoCoMo.*moba-crawler",
+    "pattern": "DoCoMo[^\\n]*moba-crawler",
     "url": "http://crawler.dena.jp/",
     "instances": [
       "DoCoMo/2.0 N902iS(c100;TB;W24H12)(compatible; moba-crawler; http://crawler.dena.jp/)"
@@ -22921,7 +22921,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "Elmer.*Thinglink ImageBot",
+    "pattern": "Elmer[^/]*Thinglink ImageBot",
     "url": "http://www.thinglink.com/help/ThinglinkImageBot",
     "instances": [
       "Elmer, the Thinglink ImageBot (http://www.thinglink.com/help/ThinglinkImageBot)"
@@ -23154,7 +23154,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "Favicon downloader.*favico\\.be",
+    "pattern": "Favicon downloader[^)]*favico\\.be",
     "url": "https://favico.be/bot.html",
     "instances": [
       "Favicon downloader (+https://favico.be/)",
@@ -23167,7 +23167,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "Favicon downloader.*favicon\\.netk6\\.com",
+    "pattern": "Favicon downloader[^)]*favicon\\.netk6\\.com",
     "url": "http://favicon.netk6.com/",
     "instances": [
       "Favicon downloader (http://favicon.netk6.com/)"
@@ -25279,7 +25279,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "(?i)Mail\\.RU\\/",
+    "pattern": "Mail\\.R[Uu]\\/",
     "instances": [
       "Mail.RU/2.0",
       "Mail.Ru/1.0"
@@ -26783,7 +26783,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "Pix.*Criteo",
+    "pattern": "Pix[^C]*Criteo",
     "instances": [
       "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36 Pix/1.0 (Criteo; x64-criteo)"
     ],
@@ -35013,7 +35013,7 @@
     "addition_date": "2026/05/09"
   },
   {
-    "pattern": "IBM SAI Crawler|domino\\.research\\.ibm\\.com.*sai-crawler",
+    "pattern": "IBM SAI Crawler|domino\\.research\\.ibm\\.com\\S*sai-crawler",
     "url": "http://domino.research.ibm.com/comm/research_projects.nsf/pages/sai-crawler.callingcard.html",
     "instances": [
       "IBM SAI Crawler/1.0",
