@@ -386,11 +386,35 @@ def write_json(path: str, data: object) -> None:
 def normalize_timeseries(data: object) -> dict[str, dict[str, float]]:
     if not isinstance(data, dict):
         return {}
+    if "timestamps" in data and "series" in data:
+        return decode_timeseries(data)
     return {
         str(k): {str(ts): float(v) for ts, v in hist.items()}
         for k, hist in data.items()
         if isinstance(hist, dict)
     }
+
+
+def decode_timeseries(data: dict) -> dict[str, dict[str, float]]:
+    timestamps = [str(ts) for ts in data["timestamps"]]
+    return {
+        pattern: {ts: float(v) for ts, v in zip(timestamps, row) if v is not None}
+        for pattern, row in data["series"].items()
+    }
+
+
+def encode_timeseries(series: dict[str, dict[str, float]]) -> dict:
+    timestamps = sorted({int(ts) for history in series.values() for ts in history})
+    columns = {str(ts): column for column, ts in enumerate(timestamps)}
+    rows = {}
+    for pattern, history in series.items():
+        row = [None] * len(timestamps)
+        for ts, value in history.items():
+            row[columns[ts]] = value
+        while row and row[-1] is None:
+            row.pop()
+        rows[pattern] = row
+    return {"timestamps": timestamps, "series": rows}
 
 
 def fetch_release_asset(name: str) -> bytes | None:
@@ -464,7 +488,7 @@ def main() -> int:
     ts = int(time.time())
     updated = update_timeseries(existing, pct, ts)
     log(f"Writing {args.timeseries_output}: {len(pct):,} crawlers @ {ts}")
-    write_json(args.timeseries_output, updated)
+    write_json(args.timeseries_output, encode_timeseries(updated))
     log("Done.")
     return 0
 

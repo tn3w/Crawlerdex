@@ -906,7 +906,8 @@
 
       const CRAWLERS_URL =
         'https://raw.githubusercontent.com/tn3w/Crawlerdex/refs/heads/master/crawlers.json';
-      const BLOCKS_URL = './data/crawler-block-percentages.json';
+      const LATEST_URL = './data/crawler-block-latest.json';
+      const SERIES_URL = './data/crawler-block-percentages.json';
 
       const urlParams = new URLSearchParams(location.search);
       let crawlers = [],
@@ -1002,13 +1003,8 @@
         const k = blockKey(c);
         let result = null;
         if (k) {
-          const series = blocks[k];
-          let maxTs = -1;
-          for (const t in series) {
-            const n = +t;
-            if (n > maxTs) maxTs = n;
-          }
-          if (maxTs >= 0) result = { key: k, series, latest: series[maxTs], latestTs: maxTs };
+          const [latestTs, latest] = blocks[k];
+          result = { key: k, latest, latestTs };
         }
         latestCache.set(c, result);
         return result;
@@ -1197,6 +1193,19 @@
         return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${grid}<path class="area" d="${area}"/><path class="line" d="${path}"/>${dots}${labels}</svg>`;
       }
 
+      let seriesRequest;
+      function loadSeries(key) {
+        seriesRequest ??= fetch(SERIES_URL).then((r) => r.json());
+        return seriesRequest.then((data) => {
+          if (!data.timestamps) return data[key];
+          const series = {};
+          data.series[key].forEach((v, i) => {
+            if (v !== null) series[data.timestamps[i]] = v;
+          });
+          return series;
+        });
+      }
+
       function openDetail(c) {
         const b = latestBlock(c);
         const fv = favicon(c.url);
@@ -1227,7 +1236,7 @@
           matched key: ${escapeHtml(b.key)}
         </div>
       </div>
-      ${chartSvg(b.series)}
+      <div class="series"></div>
     </div>`
         : `<div style="font-style:italic;opacity:.6;padding:14px;border:2px dashed var(--ink)">No block-rate data found for this crawler.</div>`
     }
@@ -1279,6 +1288,8 @@
   `;
         document.getElementById('modal').classList.add('show');
         document.body.style.overflow = 'hidden';
+        const slot = sheet.querySelector('.series');
+        if (slot) loadSeries(b.key).then((series) => (slot.innerHTML = chartSvg(series)));
       }
       function closeModal() {
         document.getElementById('modal').classList.remove('show');
@@ -1307,16 +1318,12 @@
         crawlers.forEach((c) => (c.tags || []).forEach((t) => cats.add(t)));
         document.getElementById('s-cats').textContent = cats.size;
 
-        const allTs = new Set();
-        Object.values(blocks).forEach((s) => Object.keys(s).forEach((t) => allTs.add(+t)));
-        const latestTs = Math.max(...allTs);
+        const latestTs = Math.max(...Object.values(blocks).map(([ts]) => ts));
         if (isFinite(latestTs)) {
           document.getElementById('s-snap-d').textContent =
             ' ' + new Date(latestTs * 1000).toISOString().slice(0, 10);
-          let starV = 0;
-          Object.entries(blocks).forEach(([k, s]) => {
-            if (k === '*' && s[latestTs]) starV = s[latestTs];
-          });
+          const [starTs, starValue] = blocks['*'] || [];
+          const starV = starTs === latestTs ? starValue : 0;
           document.getElementById('s-snap').firstChild.textContent = pct(starV);
         }
         const ranked = crawlers
@@ -1337,7 +1344,7 @@
         try {
           const [c, b] = await Promise.all([
             fetch(CRAWLERS_URL).then((r) => r.json()),
-            fetch(BLOCKS_URL)
+            fetch(LATEST_URL)
               .then((r) => r.json())
               .catch(() => ({})),
           ]);

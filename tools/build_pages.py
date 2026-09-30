@@ -17,6 +17,7 @@ DOCS = ROOT / "docs"
 DIST = ROOT / "dist"
 TEMPLATE_PATH = DOCS / "_crawler-template.html"
 BLOCKS_PATH = DOCS / "data" / "crawler-block-percentages.json"
+LATEST_NAME = "crawler-block-latest.json"
 SOURCE_FILES = ("index.html", "404.html", "CNAME")
 SITE = "https://crawlerdex.tn3w.dev"
 
@@ -162,6 +163,29 @@ def chart_section(crawler: dict, name: str, blocks: dict) -> str:
         f"matched key: {html.escape(key)}</div></div>"
         f"{chart_svg({str(t): v for t, v in series.items()})}</div>"
     )
+
+
+def load_blocks() -> dict[str, dict[str, float]]:
+    if not BLOCKS_PATH.exists():
+        return {}
+    data = json.loads(BLOCKS_PATH.read_text())
+    if "timestamps" not in data:
+        return data
+    timestamps = data["timestamps"]
+    return {
+        pattern: {str(ts): v for ts, v in zip(timestamps, row) if v is not None}
+        for pattern, row in data["series"].items()
+    }
+
+
+def write_latest(blocks: dict[str, dict[str, float]]) -> None:
+    latest = {}
+    for pattern, series in blocks.items():
+        if series:
+            timestamp = max(series, key=int)
+            latest[pattern] = [int(timestamp), series[timestamp]]
+    (DIST / "data").mkdir(exist_ok=True)
+    (DIST / "data" / LATEST_NAME).write_text(json.dumps(latest, separators=(",", ":")))
 
 
 def htaccess_pattern(pattern: str) -> str:
@@ -357,7 +381,7 @@ def write_sitemap(entries: list[tuple[str, str]]) -> None:
 def main() -> int:
     crawlers = json.loads((ROOT / "crawlers.json").read_text())
     template = TEMPLATE_PATH.read_text()
-    blocks = json.loads(BLOCKS_PATH.read_text()) if BLOCKS_PATH.exists() else {}
+    blocks = load_blocks()
 
     if DIST.exists():
         shutil.rmtree(DIST)
@@ -371,6 +395,8 @@ def main() -> int:
     data_src = DOCS / "data"
     if data_src.exists():
         shutil.copytree(data_src, DIST / "data")
+
+    write_latest(blocks)
 
     seen: set[str] = set()
     entries: list[tuple[str, str]] = []

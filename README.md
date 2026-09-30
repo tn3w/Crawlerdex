@@ -10,7 +10,7 @@ Download:
 https://github.com/tn3w/Crawlerdex/releases/latest/download/crawlers.json                    # full
 https://github.com/tn3w/Crawlerdex/releases/latest/download/crawlers.min.json                # no instances, no addition_date, minified (~57% smaller)
 https://github.com/tn3w/Crawlerdex/releases/latest/download/crawler-stats.json               # per-crawler aggregate block-rate stats
-https://github.com/tn3w/Crawlerdex/releases/latest/download/crawler-block-percentages.json   # block-rate time series
+https://github.com/tn3w/Crawlerdex/releases/latest/download/crawler-block-percentages.json   # block-rate time series, columnar (see below)
 https://github.com/tn3w/Crawlerdex/releases/latest/download/domain-crawler-blocks.json       # per-domain allow/block map
 ```
 
@@ -73,6 +73,8 @@ python3 tools/radar.py
 Flags: `--top-thousands` (default 25), `--max-workers` (512), `--timeout` (3s).
 Outputs (minified JSON): `crawler-stats.json`, `crawler-block-percentages.json`, `domain-crawler-blocks.json`.
 
+`crawler-block-percentages.json` is columnar: `{"timestamps": [...], "series": {pattern: [value | null, ...]}}`. Values align with `timestamps`; `null` = no sample, trailing `null`s are trimmed. ~50% smaller than the old `{pattern: {timestamp: value}}` layout, which radar still reads.
+
 ## Validation
 
 `tools/validate.py`: schema, types, tag whitelist, ReDoS (static + dynamic 50 ms probe), pattern/instance match, cross-matches, browser smoke test (~30k real + 2000 synthetic UAs), canonical formatting.
@@ -101,7 +103,7 @@ python banner.py
 ## CI
 
 - `release-crawlers.yml` — push to `crawlers.json` / `tools/radar.py`, daily cron, or manual: rebuild `crawlers.min.json`, run radar, publish all artifacts as a GitHub release. Keeps last 5.
-- `deploy-pages.yml` — runs after a successful release (also on `docs/` changes or manual): pulls `crawler-block-percentages.json` from latest release, builds + minifies pages, deploys to GitHub Pages.
+- `deploy-pages.yml` — runs after a successful release (also on `docs/` changes or manual): pulls `crawler-block-percentages.json` from latest release, builds + minifies pages, writes `data/crawler-block-latest.json` (`{pattern: [timestamp, value]}`, ~200 KB), deploys to GitHub Pages. The index page loads only the latest file; the full series loads on first detail open.
 
 ## Credits
 
